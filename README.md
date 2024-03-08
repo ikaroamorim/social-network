@@ -1,4 +1,26 @@
-# React + TypeScript + Vite
+# Social Network
+
+
+Created with bun 1.0.30
+
+
+Steps to run the project
+```js
+  cd social-network
+  bun install
+  bun run dev
+``` 
+
+
+Dependencies Added In Development
+```js
+  bun install -d eslint-config-prettier
+  bun install -d @rocketseat/eslint-config
+```
+
+
+
+/*/*/*/*/*/*/*/
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
