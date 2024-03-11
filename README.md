@@ -18,6 +18,8 @@ Dependencies Added In Development
   bun install -d @rocketseat/eslint-config
 ```
 
+Added ```**/*.Identifier``` to Settings/Files:Exclude and ```*.Identifier``` to .gitignore in order to work with wsl
+
 
 
 /*/*/*/*/*/*/*/
