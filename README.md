@@ -21,8 +21,13 @@ Dependencies Added In Development
 Added ```**/*.Identifier``` to Settings/Files:Exclude and ```*.Identifier``` to .gitignore in order to work with wsl
 
 
+Credits
+Site logo - Used Yelp logo
+<a href="https://www.flaticon.com/br/icones-gratis/uivo" title="uivo ícones">Uivo ícones criados por Roundicons Premium - Flaticon</a>
 
-/*/*/*/*/*/*/*/
+
+
+# Vite Default Readme
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
