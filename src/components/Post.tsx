@@ -1,40 +1,74 @@
 import styles from './Post.module.scss'
+import { formatDistanceToNow } from 'date-fns'
 
 import { Comment } from './Comment'
 import { Avatar } from './Avatar'
 
-export function Post() {
+interface IPostProps {
+  post: {
+    id: number
+    author: {
+      avatarUrl: string
+      name: string
+      role: string
+    }
+    postContent: {
+      type: string
+      content: string
+      href?: string
+    }[]
+    hashTags: string[]
+    publishedAt: string
+  }
+}
+
+export function Post({ post }: IPostProps) {
+  const date = new Date(post.publishedAt)
+
   return (
     <article className={styles.post}>
       <header className={styles.header}>
         <div className={styles.author}>
-          <Avatar
-            src="https://github.com/ikaroamorim.png"
-            userName="Ikaro Amorim"
-          />
+          <Avatar src={post.author.avatarUrl} userName={post.author.name} />
           <div className={styles.authorInfo}>
-            <strong>Ikaro Amorim</strong>
-            <span>Web Developer</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
-        <time title="11 de march às 15:58" dateTime="2024-03-11 15:58:30">
-          Published about 1h ago
+        <time title={date.toString()} dateTime={date.toISOString()}>
+          {formatDistanceToNow(date) /* Published about 1h ago */}
         </time>
       </header>
       <div className={styles.content}>
-        <p>C&apos;mon guys, check this out!! 😊</p>
+        {post.postContent.map((line, index) => {
+          if (line.type === 'paragraph') {
+            return <p key={`${post.id}-${index}`}>{line.content}</p>
+          }
 
-        <p>I just set another new project in my portfolio.</p>
+          if (line.type === 'link') {
+            return (
+              <p key={`${post.id}-${index}`}>
+                <a href={line?.href}>{line.content}</a>
+              </p>
+            )
+          }
+
+          return false
+        })}
 
         <p>
-          👉 <a href="https://github.com/ikaroamorim">Ikaro Amorim</a>
-        </p>
+          {post.hashTags.map((hashTag) => {
+            const replacedHashtag = hashTag.replace(' ', '')
 
-        <p>
-          <a href="#">#newproject</a> <a href="#">#nlw</a>{' '}
-          <a href="#">#rocketseat</a>
+            return (
+              <a key={replacedHashtag} href="#">
+                {'#' + replacedHashtag}{' '}
+              </a>
+            )
+          })}
         </p>
       </div>
+
       <form className={styles.commentForm}>
         <strong>Leave a comment</strong>
         <textarea placeholder="Leave a comment" />
