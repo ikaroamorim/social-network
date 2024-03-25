@@ -1,8 +1,9 @@
 import styles from './Post.module.scss'
 import { formatDistanceToNow } from 'date-fns'
 
-import { Comment } from './Comment'
+import { Comment, IComment } from './Comment'
 import { Avatar } from './Avatar'
+import React, { useState } from 'react'
 
 interface IPostProps {
   post: {
@@ -22,8 +23,27 @@ interface IPostProps {
   }
 }
 
+// const comments = [1, 2, 3]
+
 export function Post({ post }: IPostProps) {
+  const [comments, setComments] = useState<IComment[]>([])
+  const [newCommentText, setNewCommentText] = useState<string>('')
   const date = new Date(post.publishedAt)
+
+  function handleNewCommentChange() {
+    setNewCommentText(event?.target.value)
+  }
+
+  function handleCreateNewComment() {
+    event?.preventDefault()
+
+    setComments([
+      ...comments,
+      { id: comments.length + 1, postId: 1, text: newCommentText },
+    ])
+
+    setNewCommentText('')
+  }
 
   return (
     <article className={styles.post}>
@@ -69,9 +89,14 @@ export function Post({ post }: IPostProps) {
         </p>
       </div>
 
-      <form className={styles.commentForm}>
+      <form className={styles.commentForm} onSubmit={handleCreateNewComment}>
         <strong>Leave a comment</strong>
-        <textarea placeholder="Leave a comment" />
+        <textarea
+          name="comment"
+          placeholder="Leave a comment"
+          onChange={handleNewCommentChange}
+          value={newCommentText}
+        />
 
         <footer>
           <button type="submit">Send</button>
@@ -79,7 +104,9 @@ export function Post({ post }: IPostProps) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
+        {comments.map((comment, index) => {
+          return <Comment comment={comment} key={index} />
+        })}
       </div>
     </article>
   )

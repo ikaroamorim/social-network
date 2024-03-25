@@ -14,7 +14,7 @@ const posts = [
       role: 'Developer',
     },
     postContent: [
-      { type: 'paragraph', content: 'C&apos;mon guys, check this out!! 😊' },
+      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
@@ -36,7 +36,7 @@ const posts = [
       role: 'CTO @RocketSeat',
     },
     postContent: [
-      { type: 'paragraph', content: 'C&apos;mon guys, check this out!! 😊' },
+      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
@@ -58,7 +58,7 @@ const posts = [
       role: 'Educator @RocketSeat',
     },
     postContent: [
-      { type: 'paragraph', content: 'C&apos;mon guys, check this out!! 😊' },
+      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
