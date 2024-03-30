@@ -10,6 +10,7 @@ export interface IComment {
 
 export interface ICommentProps {
   comment: IComment
+  onDeleteComment: (commentId: number) => void
 }
 
 export function Comment(props: ICommentProps) {
@@ -30,7 +31,10 @@ export function Comment(props: ICommentProps) {
                 About 1h ago
               </time>
             </div>
-            <button title="Delete Comment">
+            <button
+              onClick={() => props.onDeleteComment(props.comment.id)}
+              title="Delete Comment"
+            >
               <Trash size={24} />
             </button>
           </header>

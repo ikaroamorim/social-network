@@ -80,6 +80,14 @@ const posts = [
   },
 ]
 
+const comments = [
+  {
+    id: 1,
+    postId: 1,
+    text: 'That`s nice!!',
+  },
+]
+
 function App() {
   return (
     <div>

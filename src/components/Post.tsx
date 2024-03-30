@@ -3,7 +3,7 @@ import { formatDistanceToNow } from 'date-fns'
 
 import { Comment, IComment } from './Comment'
 import { Avatar } from './Avatar'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 interface IPostProps {
   post: {
@@ -29,13 +29,11 @@ interface IPostProps {
 export function Post({ post }: IPostProps) {
   const [comments, setComments] = useState<IComment[]>([])
   const [newCommentText, setNewCommentText] = useState<string>('')
+
   const date = new Date(post.publishedAt)
+  const isNewCommentEmpty = newCommentText.length === 0
 
-  function handleNewCommentChange() {
-    setNewCommentText(event?.target.value)
-  }
-
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent<HTMLFormElement>): void {
     event?.preventDefault()
 
     setComments([
@@ -44,6 +42,16 @@ export function Post({ post }: IPostProps) {
     ])
 
     setNewCommentText('')
+  }
+
+  function handleDeleteComment(commentId: number): void {
+    setComments(comments.filter((comment) => comment.id !== commentId))
+  }
+
+  function handleNewCommentChange(
+    event: ChangeEvent<HTMLTextAreaElement>,
+  ): void {
+    setNewCommentText(event.target.value)
   }
 
   return (
@@ -97,16 +105,25 @@ export function Post({ post }: IPostProps) {
           placeholder="Leave a comment"
           onChange={handleNewCommentChange}
           value={newCommentText}
+          required
         />
 
         <footer>
-          <button type="submit">Send</button>
+          <button disabled={isNewCommentEmpty} type="submit">
+            Send
+          </button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment comment={comment} key={comment.id} />
+          return (
+            <Comment
+              comment={comment}
+              key={comment.id}
+              onDeleteComment={handleDeleteComment}
+            />
+          )
         })}
       </div>
     </article>
