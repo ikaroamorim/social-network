@@ -14,12 +14,14 @@ const posts = [
       role: 'Developer',
     },
     postContent: [
-      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
+      { id: 1, type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
+        id: 2,
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
       },
       {
+        id: 3,
         type: 'link',
         content: '👉 Ikaro Amorim',
         href: 'Ikaro Amorim',
@@ -36,15 +38,17 @@ const posts = [
       role: 'CTO @RocketSeat',
     },
     postContent: [
-      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
+      { id: 1, type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
+        id: 2,
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
       },
       {
+        id: 3,
         type: 'link',
         content: '👉 Ikaro Amorim',
-        href: 'https://portfolio-ikaroamorim.vercel.app/',
+        href: 'Ikaro Amorim',
       },
     ],
     hashTags: ['newproject', 'nlw', 'rocketseat'],
@@ -58,14 +62,16 @@ const posts = [
       role: 'Educator @RocketSeat',
     },
     postContent: [
-      { type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
+      { id: 1, type: 'paragraph', content: `C'mon guys, check this out!! 😊` },
       {
+        id: 2,
         type: 'paragraph',
         content: 'I just set another new project in my portfolio',
       },
       {
+        id: 3,
         type: 'link',
-        content: 'I just set another new project in my portfolio',
+        content: '👉 Ikaro Amorim',
         href: 'Ikaro Amorim',
       },
     ],

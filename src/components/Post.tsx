@@ -3,7 +3,7 @@ import { formatDistanceToNow } from 'date-fns'
 
 import { Comment, IComment } from './Comment'
 import { Avatar } from './Avatar'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface IPostProps {
   post: {
@@ -14,6 +14,7 @@ interface IPostProps {
       role: string
     }
     postContent: {
+      id: number
       type: string
       content: string
       href?: string
@@ -60,14 +61,14 @@ export function Post({ post }: IPostProps) {
         </time>
       </header>
       <div className={styles.content}>
-        {post.postContent.map((line, index) => {
+        {post.postContent.map((line) => {
           if (line.type === 'paragraph') {
-            return <p key={`${post.id}-${index}`}>{line.content}</p>
+            return <p key={`${post.id}-${line.id}`}>{line.content}</p>
           }
 
           if (line.type === 'link') {
             return (
-              <p key={`${post.id}-${index}`}>
+              <p key={`${post.id}-${line.id}`}>
                 <a href={line?.href}>{line.content}</a>
               </p>
             )
@@ -104,8 +105,8 @@ export function Post({ post }: IPostProps) {
       </form>
 
       <div className={styles.commentList}>
-        {comments.map((comment, index) => {
-          return <Comment comment={comment} key={index} />
+        {comments.map((comment) => {
+          return <Comment comment={comment} key={comment.id} />
         })}
       </div>
     </article>
